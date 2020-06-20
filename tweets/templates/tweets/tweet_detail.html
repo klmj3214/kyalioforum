@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block script %}
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    loadTweetContainer("tweet-container", {{ object.id }})
+  });
+
+</script>
+{% endblock script %}
+
+{% block bg %}
+  class="child_bg_class"
+{% endblock %}
+
+{% block content %}
+<div class='row_self' >
+    <div class='col-sm-3 col-xs-12' style='background-color:#FFFAF0;'>
+      <div class="card text-center" style="width: 15rem; background-color:rgba(217,226,237,.5);">             
+               <div class="card-body">
+                 <p class="card-text"><a href='/{{ request.user }}/'>@{{ request.user }}</a></p>
+               </div>
+           </div>
+     </div> 
+
+    <div class='col-sm-9 col-xs-12'>
+      <div id='tweet-container'>
+      </div>
+    </div> 
+ </div>
+
+	
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+<div class='col-sm-1' style='background-color:red;'>
+    {{object.user}}
+  </div>
+   <div class='col-sm-1' style='background-color:yellow;'>
+    {{object.user}}
+  </div>
+   <div class='col-sm-1' style='background-color:blue;'>
+    {{object.user}}
+  </div>

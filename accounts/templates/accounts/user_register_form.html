@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+
+{% block title %}Register | Welcome {{ block.super }}{% endblock title %}
+
+{% block bg %}
+  class="child_bg_class"
+{% endblock %}
+
+{% block content %}
+<div class='row_self'>
+    <div class='col-sm-6 sm-offset-3'>
+        <div class='registerform'>
+            <div class='registerform2'>
+                  <h1> Register </h1>       
+                    <form class = 'form {% if form_class %}{{ form_class }}{% endif %}' method='POST' action="{% if action_url %}{{ action_url }}{% endif %}">
+                   {% csrf_token %}
+                   {{ form|crispy }}
+                      <input class='btn btn-primary' type="submit" value= "Register" />
+                   </form>
+           </div>
+        </div>
+    </div>
+</div> 
+{% endblock content %}
+

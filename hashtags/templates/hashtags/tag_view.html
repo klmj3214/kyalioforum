@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block script %}
+<script type="text/javascript">
+
+$(document).ready(function() {
+    loadTweetContainer("tweet-container")
+});
+
+</script>
+{% endblock script %}
+
+{% block bg %}
+  class="child_bg_class"
+{% endblock %}
+
+{% block content %} 
+    <div class='row_self'>
+      <div class='col-sm-12'>
+        {% if request.GET.q %}
+        <p class='lead'>Results for {{ request.GET.q }}</p>
+        <hr/>
+        {% endif %}
+      </div>
+      <div class='col-sm-8 col-sm-offset-2'>
+        <h1>Marks</h1>
+        <hr/>
+           
+            <div id='tweet-container' data-url='/api/tags/{{ obj.tag }}/'>
+
+            </div>
+            <a href='#' id='loadmore'>Load More Tweets</a>
+
+      </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{% block script %}
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $("form input").addClass('form-self')
+
+});
+
+</script>
+{% endblock %}
+
+
+
+{% block bg %}
+  class="child_bg_class"
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class='col-login-box text-center'>
+<div class='login-box-myself'>
+
+<h1>
+<img id='entericon' src="{% static 'img/door.png' %}" width="85" height="85" alt="door">
+</h1>
+{% if form.errors %}
+<p style="color:red;">Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to join the discussion.</p>
+    {% endif %}
+{% endif %}
+
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+ 
+
+ <div class="form-group">
+    {{ form.username.label_tag }}
+    {{ form.username }}
+</div>
+
+ <div class="form-group">
+    {{ form.password.label_tag }}
+    {{ form.password }}
+</div>
+
+
+
+<button type="submit" class='btn btn-primary mb-2'>Login</button>
+<input type="hidden" name="next" value="{{ next }}">
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<!--- <p><a href="{% url 'password_reset' %}">Lost password?</a></p> --->
+</div>
+</div>
+
+
+
+
+
+{% endblock %}
